@@ -1,0 +1,129 @@
+{
+  "name": "Chad Gutierrez",
+  "title": "AI Enablement & Transformation Lead | Agentic Solutions Architect",
+  "location": "Glen Allen, VA",
+  "email": "chad@lifebalanced.net",
+  "linkedin": "https://linkedin.com/in/gutierrezchad",
+  "phone": "(618) 420-6836",
+  "summary": "AI Enablement and GenAI Transformation leader with 12+ years in enterprise transformation at Fortune 500 companies (CVS Health, Mastercard, U.S. Bank), now focused on architecting and deploying AI-powered solutions that accelerate organizational performance. Hands-on builder of AI agents, agentic systems, and automation pipelines who also coaches teams to adopt, operate, and extend these solutions independently. Proven track record delivering $3.2M+ in measurable business impact through productivity gains, cost avoidance, and accelerated delivery. Distinct advantage: combines the organizational change expertise to drive adoption with the technical capability to build the solutions, closing the gap between AI strategy and AI execution that stalls most enterprise AI initiatives.",
+  "unique_value": "Most candidates are either technical people who can't coach, or coaches who can't build. Chad is both. He brings 12+ years of enterprise coaching and organizational transformation combined with hands-on AI building capability.",
+  "target_roles": ["AI Enablement Lead", "AI Transformation Lead", "Agentic Solutions Architect", "AI Change Management Manager"],
+  "salary_range": "$175K+ based on experience level and market positioning for AI Enablement Lead roles",
+  "experience": [
+    {
+      "title": "Agentic Solutions Architect / Product Coach",
+      "company": "CVS Health",
+      "location": "Remote",
+      "dates": "Apr 2025 - Present",
+      "summary": "Dual-role engagement combining AI solution architecture with product coaching across CVS Health's EDML organization.",
+      "highlights_ai": [
+        "Built enterprise HTML tooling suite (PPTX generator, WSJF prioritization calculator, Jira data import tool) using AI-assisted development when traditional IT pathways were blocked",
+        "Architected AI agent systems including modular behavior configurations spanning 13+ specialized domains, cross-platform deployment frameworks, persistent memory pipelines, and session continuity protocols",
+        "Developed automated meeting intelligence workflows and AI-powered coaching note generation",
+        "Designed and facilitated AI enablement workshops covering prompt engineering, workflow automation, and responsible AI use",
+        "Built MCP (Model Context Protocol) pipelines connecting AI agents to enterprise knowledge bases"
+      ],
+      "highlights_coaching": [
+        "Achieved average throughput gain of 80.7% across coached teams (40% to 140% range)",
+        "Delivered estimated $1.7M in annual cost avoidance and $1.5M in annualized value",
+        "Reduced cycle times by 50-60% for key product teams"
+      ]
+    },
+    {
+      "title": "Agile Delivery Lead (Contract)",
+      "company": "General Dynamics IT (GDIT)",
+      "location": "Remote",
+      "dates": "Jan 2025 - Apr 2025",
+      "summary": "Contract engagement leading agile delivery across integrated product teams supporting FDA programs.",
+      "highlights": [
+        "Scaled product-centric coaching practices and standardized agile delivery processes",
+        "Developed Python, PowerShell, and advanced JQL scripts to automate Jira data analysis and built complex dashboards"
+      ]
+    },
+    {
+      "title": "Senior Agile Coach",
+      "company": "U.S. Bank",
+      "location": "Remote",
+      "dates": "2022 - 2024",
+      "summary": "Led agile transformation within Information Security Services, directing 12 Scrum Masters and orchestrating 25+ product teams.",
+      "highlights": [
+        "25% boost in productivity through continuous improvement and targeted coaching",
+        "Reduced cycle times by 20% (from 15 to 12 days average)",
+        "Revitalized IT Security's quarterly planning, engaging 300+ personnel",
+        "Improved ROI by 15% across product teams through product manager development program"
+      ]
+    },
+    {
+      "title": "Agile Coach / Senior Scrum Master",
+      "company": "Mastercard",
+      "location": "Remote",
+      "dates": "2018 - 2022",
+      "summary": "Led transformative agile overhaul for employee Identity Access Management program across global distributed teams.",
+      "highlights": [
+        "Spearheaded formation of 13+ global teams",
+        "23% increase in project completion rates and 32% improvement in time-to-market",
+        "Developed virtual agile training programs increasing project throughput by 34%"
+      ]
+    },
+    {
+      "title": "Agile Coach / Project Manager",
+      "company": "World Wide Technology",
+      "location": "Maryland Heights, MO",
+      "dates": "2014 - 2018",
+      "highlights": [
+        "Directed cloud migration to Oracle platform, 25% increase in deployment speed",
+        "Coached VP-level leadership through agile adoption"
+      ]
+    }
+  ],
+  "earlier_career": "SharePoint Administrator / Systems Engineer at TKC Communications; System Administrator in the United States Air Force",
+  "education": [
+    {"degree": "Master of Arts in Management", "school": "American Military University", "status": "In Progress"},
+    {"degree": "Bachelor of Science in Information Systems Management", "school": "American Military University", "status": "Completed"}
+  ],
+  "certifications": [
+    "Certified Scrum Professional - ScrumMaster (CSP-SM)",
+    "Certified SAFe 6 Practice Consultant (SPC)",
+    "Certified SAFe 6 Scrum Master (SSM)",
+    "ICP-ENT (Enterprise Agile Coaching)",
+    "ICP-ACC (Agile Coaching)",
+    "ICP-ATF (Agile Team Facilitation)"
+  ],
+  "technical_skills": {
+    "ai_platforms": "Claude (Anthropic), Claude Code, Microsoft Copilot, Google Gemini, OpenAI API, Cursor, Perplexity",
+    "agentic_patterns": "Model Context Protocol (MCP), Multi-Agent Orchestration, Agentic Workflows, RAG Patterns, Prompt Engineering, AI Agent Architecture",
+    "development": "HTML/CSS/JavaScript, Node.js, Python, PowerShell, API Integration, Rapid Application Development",
+    "enterprise_tools": "Jira, Azure DevOps, Notion, Confluence, ServiceNow, SmartSheet, Rally, Otter AI",
+    "methodologies": "SAFe, Scrum, Kanban, OKRs, Value Stream Mapping, Design Thinking, Lean-Agile, Adult Learning Design"
+  },
+  "portfolio_projects": [
+    {"name": "Modular AI Agent Behavior System", "category": "Agent Architecture", "description": "Configurable instruction architecture enabling a single AI agent to operate across 13+ specialized domains with context-appropriate behavior."},
+    {"name": "Cross-Platform AI Agent Deployment", "category": "Agent Architecture", "description": "Portable identity system enabling a single AI agent to operate consistently across multiple runtime environments."},
+    {"name": "AI Agent Session Continuity System", "category": "Agent Architecture", "description": "Stateful handoff architecture enabling AI agents to gracefully transfer context between sessions without information loss."},
+    {"name": "Persistent Memory Architecture for AI Agents", "category": "Agent Architecture", "description": "Multi-stage memory pipeline for AI agents operating across extended engagements."},
+    {"name": "AI Enablement Workshop Series", "category": "Training & Enablement", "description": "Enterprise AI enablement workshops covering practical AI adoption, prompt engineering, workflow automation, and responsible AI use."},
+    {"name": "Enterprise HTML Tooling Suite", "category": "Application Development", "description": "Custom web applications (PPTX generator, WSJF calculator, Jira import tool) built with AI-assisted development when IT blocked traditional pathways."},
+    {"name": "Meeting Intelligence & Preparation Automation", "category": "Workflow Automation", "description": "Automated meeting preparation workflows that generate pre-meeting briefings, facilitation content, and post-meeting documentation."},
+    {"name": "MCP-Enabled Workspace Integration Pipeline", "category": "Workflow Automation", "description": "Model Context Protocol pipelines enabling AI agents to read from and write to enterprise knowledge bases."},
+    {"name": "Structured Prompt Engineering Framework", "category": "Knowledge Systems", "description": "Reusable library of prompt engineering patterns including task chaining, multi-expert orchestration, and hallucination detection."},
+    {"name": "Automated AI Research Discovery Pipeline", "category": "Workflow Automation", "description": "Automated research pipelines scanning for emerging AI patterns, techniques, and tools across academic and technical sources."},
+    {"name": "AI Training Program - Organizational Curriculum Design", "category": "Training & Enablement", "description": "Structured AI training program designed to scale AI literacy across enterprise organizations."},
+    {"name": "Automated Curated Content Briefing System", "category": "Workflow Automation", "description": "Automated daily briefing system aggregating news across multiple domains with editorial analysis."}
+  ],
+  "core_competencies": ["AI Enablement Strategy", "Generative AI / GenAI", "AI Transformation", "Agentic AI Architecture", "Prompt Engineering", "Multi-Agent Orchestration", "AI Agent Design & Deployment", "Workflow Automation", "Responsible AI", "Enterprise AI Training", "Product Coaching", "Organizational Transformation", "Change Management", "ROI & Business Case Development", "Stakeholder Engagement (C-Suite)", "SAFe & Agile Delivery", "Systems Thinking"],
+  "resume_download": {
+    "available": true,
+    "url": "./Gutierrez-Chad-Resume.pdf",
+    "instructions": "When a visitor asks for Chad's resume, tell them they can download it using the Resume button in the hero section or the Download Resume link in the Contact section at the bottom of the page."
+  },
+  "key_metrics": {
+    "total_business_impact": "$3.2M+",
+    "throughput_gain": "80.7% average across coached teams",
+    "cost_avoidance": "$1.7M annual",
+    "annualized_value": "$1.5M",
+    "cycle_time_reduction": "50-60%",
+    "unit_cost_reduction": "up to 37%",
+    "years_experience": "12+",
+    "fortune_500_companies": "CVS Health, Mastercard, U.S. Bank"
+  }
+}
