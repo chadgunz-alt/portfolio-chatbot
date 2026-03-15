@@ -6,11 +6,13 @@ Set OPENROUTER_API_KEY env var before running.
 """
 import json
 import os
+import time
+from collections import defaultdict
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from openai import OpenAI
 from pydantic import BaseModel
 
@@ -67,12 +69,57 @@ client = OpenAI(
 )
 
 app = FastAPI()
+
+# --- CORS: only allow your domain + localhost for dev ---
+ALLOWED_ORIGINS = [
+    "https://chadgutierrez.com",
+    "https://www.chadgutierrez.com",
+    "https://genuine-pastelito-54f724.netlify.app",
+    "http://localhost:8080",
+    "http://localhost:3000",
+    "http://127.0.0.1:8080",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
+
+# --- Rate limiting ---
+# Tracks: { ip_address: [timestamp, timestamp, ...] }
+rate_limit_store: dict[str, list[float]] = defaultdict(list)
+RATE_LIMIT_WINDOW = 60          # seconds
+RATE_LIMIT_MAX_REQUESTS = 10    # max requests per window per IP
+
+# --- Conversation limits ---
+MAX_MESSAGE_LENGTH = 500        # max chars per user message
+MAX_CONVERSATION_TURNS = 30     # max user+assistant messages before reset
+MAX_DAILY_MESSAGES_PER_IP = 100 # hard cap per IP per day
+daily_message_count: dict[str, dict] = defaultdict(lambda: {"date": "", "count": 0})
+
+def check_rate_limit(ip: str) -> bool:
+    """Return True if request is allowed, False if rate-limited."""
+    now = time.time()
+    # Clean old entries
+    rate_limit_store[ip] = [t for t in rate_limit_store[ip] if now - t < RATE_LIMIT_WINDOW]
+    if len(rate_limit_store[ip]) >= RATE_LIMIT_MAX_REQUESTS:
+        return False
+    rate_limit_store[ip].append(now)
+    return True
+
+def check_daily_limit(ip: str) -> bool:
+    """Return True if under daily cap."""
+    today = time.strftime("%Y-%m-%d")
+    entry = daily_message_count[ip]
+    if entry["date"] != today:
+        entry["date"] = today
+        entry["count"] = 0
+    if entry["count"] >= MAX_DAILY_MESSAGES_PER_IP:
+        return False
+    entry["count"] += 1
+    return True
 
 # In-memory conversation storage per visitor
 conversations: dict[str, list] = {}
@@ -82,33 +129,64 @@ class ChatRequest(BaseModel):
     visitor_id: str = "anonymous"
 
 @app.post("/api/chat")
-async def chat(req: ChatRequest):
+async def chat(req: ChatRequest, request: Request):
+    ip = request.client.host if request.client else "unknown"
+
+    # --- Rate limit check ---
+    if not check_rate_limit(ip):
+        return JSONResponse(
+            status_code=429,
+            content={"error": "Slow down. Too many requests. Try again in a minute."},
+        )
+
+    # --- Daily limit check ---
+    if not check_daily_limit(ip):
+        return JSONResponse(
+            status_code=429,
+            content={"error": "You've hit the daily message limit. Come back tomorrow or reach out to chad@lifebalanced.net."},
+        )
+
+    # --- Input validation ---
+    message = req.message.strip()
+    if not message:
+        return JSONResponse(status_code=400, content={"error": "Empty message."})
+    if len(message) > MAX_MESSAGE_LENGTH:
+        message = message[:MAX_MESSAGE_LENGTH]
+
     vid = req.visitor_id
     if vid not in conversations:
         conversations[vid] = []
 
-    conversations[vid].append({"role": "user", "content": req.message})
+    # --- Conversation length check ---
+    if len(conversations[vid]) >= MAX_CONVERSATION_TURNS:
+        conversations[vid] = conversations[vid][-10:]  # keep last 10 for context
 
-    # Keep last 20 messages to manage context
+    conversations[vid].append({"role": "user", "content": message})
+
+    # Keep last 20 messages to manage context window
     history = conversations[vid][-20:]
 
     model = os.environ.get("CHAT_MODEL", DEFAULT_MODEL)
 
     async def generate():
         full_response = ""
-        stream = client.chat.completions.create(
-            model=model,
-            max_tokens=512,
-            messages=[{"role": "system", "content": SYSTEM_PROMPT}] + history,
-            stream=True,
-        )
-        for chunk in stream:
-            delta = chunk.choices[0].delta
-            if delta.content:
-                full_response += delta.content
-                yield f"data: {json.dumps({'text': delta.content})}\n\n"
+        try:
+            stream = client.chat.completions.create(
+                model=model,
+                max_tokens=512,
+                messages=[{"role": "system", "content": SYSTEM_PROMPT}] + history,
+                stream=True,
+            )
+            for chunk in stream:
+                delta = chunk.choices[0].delta
+                if delta.content:
+                    full_response += delta.content
+                    yield f"data: {json.dumps({'text': delta.content})}\n\n"
+        except Exception:
+            yield f"data: {json.dumps({'text': 'Sorry, something went wrong on my end. Try again in a sec.'})}\n\n"
 
-        conversations[vid].append({"role": "assistant", "content": full_response})
+        if full_response:
+            conversations[vid].append({"role": "assistant", "content": full_response})
         yield "data: [DONE]\n\n"
 
     return StreamingResponse(generate(), media_type="text/event-stream")
