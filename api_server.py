@@ -174,7 +174,7 @@ async def chat(req: ChatRequest, request: Request):
         try:
             stream = client.chat.completions.create(
                 model=model,
-                max_tokens=512,
+                max_tokens=768,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}] + history,
                 stream=True,
             )
